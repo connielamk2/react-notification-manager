@@ -47,11 +47,11 @@ export default class NotificationManager extends React.Component<Props, State> {
         portalContainer.removeChild(this.el);
     }
 
-    createNotification = (component: ComponentRenderFunction) => {
+    createNotification = (component: ComponentRenderFunction, props: Object) => {
         this.setState(prevState => {
             if (!prevState.active && prevState.stack.length === 0) {
                 return {
-                    active: component({ close: this.closeNotification }),
+                    active: component({ close: this.closeNotification, ...props }),
                 };
             }
             return {
